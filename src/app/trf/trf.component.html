@@ -1,0 +1,134 @@
+<div>
+    <br>
+    <br>
+  </div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 well">
+            <div class="col-sm-12 form-legend">
+                <h2>Tuition Reimbursement Form</h2>
+            </div>
+
+              <form (ngSubmit)="onSubmit()">
+                    <div class="form-row">
+                        <!--Name of the Employee-->
+                        <div class="col-md-6 mb-4">
+                            <label for="firstname">First Name</label>
+                            <input type="text" class="form-control" id="firstname"
+                            required
+                            [(ngModel)]="model.firstName" name="firstname"  placeholder="First Name">       
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <label for="lastname">Last Name</label>
+                            <input type="text" class="form-control" id="lastname"
+                            required
+                            [(ngModel)]="model.lastName" name="lastname" placeholder="Last Name">       
+                        </div>
+                    </div>   
+
+                    <div class="form-row">
+                        <!--Type Of Event-->
+                        <div class="col-md-5 mb-2">
+                            <label for="typeEvent">Type of Event</label>
+                            <select class="form-control"  id="typeEvent"
+                                    required
+                                    [(ngModel)]="model.typeEvent" name="typeEvent">
+                            <option *ngFor="let event of eventTypes" [value]="event">{{event}}</option>
+                            </select>
+                        </div>
+                    
+                        <!--Cost of event-->
+                        <div class="col-md-3 mb-4">
+                            <label for="costEvent"> Event Cost</label>
+                            <input type="number" class="form-control" id="costEvent"
+                            required
+                            [(ngModel)]="model.costEvent" name="costEvent" placeholder="0.0">   
+                        </div>
+
+                        <!--Start Date of Event-->
+                        <div class="col-md-4 mb-4">
+                            <label for="startDate">Start Date of Event</label>
+                            <input type="date" class="form-control" id="startDate"
+                            required
+                            [(ngModel)]="model.startDate" name="startDate" min="2020-01-01" max="2050-12-31">   
+                        </div>
+                    </div>
+                   
+                    <!--Time of Event-->
+                    <div class="form-row">
+                        <div class="col-md-6 mb-4">
+                            <label for="startTime">Start time of Event</label>
+                            <input type="time" class="form-control" id="startTime"
+                            required
+                            [(ngModel)]="model.startTime" name="startTime">  
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <label for="endTime">End time of Event</label>
+                            <input type="time" class="form-control" id="endTime"
+                            required
+                            [(ngModel)]="model.endTime" name="endTime">  
+                        </div>
+                    </div>
+                      
+                    <!--Location address-->
+                    <div class="form-row">
+                        <div class="col-md-12 mb-4">
+                            <label for="address">Address</label>
+                            <input type="text" class="form-control" id="address"
+                            required
+                            [(ngModel)]="model.address" name="address" placeholder="Address">  
+                        </div>
+                    </div>
+
+                    <!--Cont. Location address-->
+                    <div class="form-row">
+                        <!--City-->
+                        <div class="col-md-5 mb-4">
+                            <label for="address">City</label>
+                            <input type="text" class="form-control" id="city"
+                            required
+                            [(ngModel)]="model.city" name="city" placeholder="City">  
+                        </div>
+
+                        <!--State-->
+                        <div class="col-md-4 mb-4">
+                            <label for="state">State</label>
+                            <select class="form-control"  id="state"
+                                    required
+                                    [(ngModel)]="model.state" name="state" >
+                            <option *ngFor="let state of states" [value]="state"  >{{state}}</option>
+                            </select>
+                        </div>
+
+                        <!--Zip-->
+                        <div class="col-md-3 mb-4">
+                            <label for="zipCode">Zip Code</label>
+                            <input type="number" class="form-control" id="zipCode"
+                            required
+                            [(ngModel)]="model.zipCode" name="zipCode"  placeholder="Zip Code">   
+                        </div>
+                    </div>
+                      
+                    <!--Discription-->
+                    <div class="form-row">
+                        <div class="col-md-12 mb-4">
+                            <label for="description">Description</label>
+                            <textarea class="form-control" id="description" rows="4"
+                            [(ngModel)]="model.description" name="description" placeholder="Description of Event"></textarea>
+                        </div>
+                    </div>
+
+                    <!--Import Table-->
+                    <div class="col-md-8 mb-4">
+                        <div class="custom-file">
+                            <label for="discription">Please attach approval email, if you have received one</label>
+                            <input type="file" class="custom-file-input" id="customFile">
+                        </div>
+                    </div>
+
+                </form>
+        </div>
+    </div>
