@@ -1,18 +1,20 @@
 export class Trms {
     constructor(
-      public firstName: string,
-      public lastName: string,
-      public eventName: string,
-      public typeEvent: string,
-      public costEvent: number,
-      public startDate: string,
-      public startTime: string,
-      public endTime: string,
-      public address: string,
-      public city: string,
-      public state: string,
-      public zipCode: number,
-      public description: string
+      public formFirstName: string,
+      public formLastName: string,
+      public formEventName: string,
+      public formEventType: string,
+      public formEventCost: number,
+      public formEventStartDate: string,
+      public formEventStartTime: string,
+      public formEventEndTime: string,
+      public formEventAddress: string,
+      public formEventCity: string,
+      public formEventState: string,
+      public formEventZip: number,
+      public formGradedFormat: string,
+      public formGradeCO: string,
+      public formDescription: string
     ) {  }
   
   }

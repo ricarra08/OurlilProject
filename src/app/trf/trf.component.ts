@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Trms } from '../trf/trms'
-
+import { TrfService } from './trf.service';
 
 @Component({
   selector: 'app-trf',
   templateUrl: './trf.component.html',
   styleUrls: ['./trf.component.css']
 })
-export class TrfComponent implements OnInit {
+export class TrfComponent {
   eventTypes = ['University Course','Seminar', 'Certification Prep Classes',
                 'Certification','Technical-Training','other'];
 
@@ -22,19 +23,22 @@ export class TrfComponent implements OnInit {
                 'West Virginia','Wisconsin','Wyoming'];
                 
 model = new Trms('', '', '','',null,"",
-                '','','','', '', null,'');
+'','','','', '', null,'','','');
                
-submitted:boolean = false;
-onSubmit() {this.submitted = true;}
 
-newForm(){
-  this.model = new Trms('','','','',0,'','','','','','',0,'');
-}
 
-  constructor() { }
 
-  ngOnInit(): void {
+  constructor(private router: Router, 
+    private Trfservice: TrfService) { }
+
+  onSubmit(): void{
+    console.log('Submitted');
+    this.Trfservice.submitForm(this.model).subscribe(
+      data => {
+        console.log(data);
+      }
+    );
   }
 
-  get diagnostic() { return JSON.stringify(this.model); }
+  
 }
