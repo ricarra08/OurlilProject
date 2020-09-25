@@ -5,7 +5,9 @@ import { delay, materialize, dematerialize } from 'rxjs/operators';
 import { USERS } from '../_models/mock-users';
 
 const usersKey = 'trms_user';
-//let users = JSON.parse(localStorage.getItem(usersKey)) || [];
+const trmsKey = 'trms_forms';
+
+let trms = JSON.parse(localStorage.getItem(trmsKey)) || [];
 let users = JSON.parse(JSON.stringify(USERS));
 localStorage.setItem(usersKey, JSON.stringify(USERS));
 
@@ -49,22 +51,20 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         function register() {
-            const user = body
+            const trf = body
 
-            if (users.find(x => x.username === user.username)) {
-                return error('Username "' + user.username + '" is already taken')
-            }
-
-            user.id = users.length ? Math.max(...users.map(x => x.id)) + 1 : 1;
-            users.push(user);
-            localStorage.setItem(usersKey, JSON.stringify(users));
+            trf.firstName = trms.length ? Math.max(...trms.map(x => x.firstName)) + 1 : 1;
+            trms.push(trf);
+            localStorage.setItem(trmsKey, JSON.stringify(trms));
             return ok();
         }
 
         function getUsers() {
             if (!isLoggedIn()) return unauthorized();
-            return ok(users.map(x => basicDetails(x)));
+            return ok(trms.map(x => basicDetails(x)));
         }
+
+
 
         function getUserById() {
             if (!isLoggedIn()) return unauthorized();
@@ -116,9 +116,11 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 .pipe(materialize(), delay(500), dematerialize());
         }
 
-        function basicDetails(user) {
-            const { id, username, firstName, lastName } = user;
-            return { id, username, firstName, lastName };
+        function basicDetails(trms) {
+            const { formFirstName, formLastName, formEventType,  formEventCost, formEventStartDate, formEventStartTime, formEventEndTime, formEventAddress,  formEventCity,
+                formEventState,formEventZip, formDescription} = trms;
+            return { formFirstName, formLastName, formEventType,  formEventCost, formEventStartDate, formEventStartTime, formEventEndTime, formEventAddress,  formEventCity,
+                formEventState,formEventZip, formDescription};
         }
 
         function isLoggedIn() {

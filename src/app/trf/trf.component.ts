@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Trms } from '../trf/trms'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { first } from 'rxjs/operators';
+
+import { AccountService } from '../_services/account.service';
 
 
 @Component({
@@ -21,17 +25,49 @@ export class TrfComponent implements OnInit {
                 'Texas','Utah', 'Vermont','Virginia','Virgin Islands', 'Washington',
                 'West Virginia','Wisconsin','Wyoming'];
                 
-model = new Trms('', '', '','',null,"",
-'','','','', '', null,'','','');
-               
-submitted:boolean = false;
-onSubmit() {this.submitted = true;}
 
+  
+  form: FormGroup;
+  submitted = false;
 
-  constructor() { }
+  constructor(
+      private formBuilder: FormBuilder,
+      private route: ActivatedRoute,
+      private router: Router,
+      private accountService: AccountService,
+  ) { }
 
   ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      formFirstName: ['', Validators.required],
+      formLastName: ['', Validators.required],
+      formEventType: ['', Validators.required],
+      formEventCost: ['', Validators.required],
+      formEventStartDate: ['', Validators.required],
+      formEventStartTime: ['', Validators.required],
+      formEventEndTime: ['', Validators.required],
+      formEventAddress: ['', Validators.required],
+      formEventCity: ['', Validators.required],
+      formEventState: ['', Validators.required],
+      formEventZip: ['', Validators.required],
+      formDescription: ['', Validators.required],
+  });
   }
 
+  get f() {return this.form.controls;}
+
+  onSubmit(){
+    this.submitted = true;
+    console.log("inside submit");
+    
+    this.accountService.register(this.form.value)
+      .pipe(first())
+      .subscribe({
+          next: () => {
+              this.router.navigate(['../emphome'], { relativeTo: this.route })
+              console.log("inside submit");
+          }
+      })
+  }
   
 }

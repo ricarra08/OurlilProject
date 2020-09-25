@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
+import { Trms } from '../trf/trms';
 import { User } from '../_models/user';
 
 @Injectable({
@@ -13,6 +14,9 @@ import { User } from '../_models/user';
 export class AccountService {
   private userSubject: BehaviorSubject<User>;
   public user: Observable<User>;
+  
+  private trfSubject: BehaviorSubject<Trms>;
+  public trf : Observable<Trms>;
 
   constructor(
     private router: Router,
@@ -20,12 +24,21 @@ export class AccountService {
     ) { 
       this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
       this.user = this.userSubject.asObservable();
+
+      this.trfSubject = new BehaviorSubject<Trms>(JSON.parse(localStorage.getItem('trf')));
+      this.trf = this.trfSubject.asObservable();
+
+
   }
 
   public get userValue(): User {
     return this.userSubject.value;
   }
 
+  public get trfValue(): Trms{
+    return this.trfSubject.value;
+  }
+  
   login(username, password){
     return this.http.post<User>(`${environment.apiUrl}/users/authenticate`, { username, password})
     .pipe(map(user => {
@@ -41,7 +54,15 @@ export class AccountService {
     this.router.navigate(['']);
   } //implement on emp HP once login works
 
-  //register to be filled
+  register(trms: Trms) {
+    return this.http.post(`${environment.apiUrl}/users/register`, trms);
+}
+
+  getAll() {
+    return this.http.get<Trms[]>(`${environment.apiUrl}/users`);
+}
+
+
   //getAll & getById & update & delete will done when working with tables
 
 

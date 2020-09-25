@@ -1,17 +1,17 @@
 
-	<div class="container">
+	<div *ngIf='show' class = "container">
 		<h1>Welcome</h1>
-		<nav class ="container">
-			<a routerLink="/emplogin">Employee</a>
+		<nav class ="container" >
+			<a routerLink="/emplogin" (click)="dropBar()">Employee</a>
 			<br>
 			<br>
-			<a routerLink="/dslogin">Direct Supervisor</a>
+			<a routerLink="/dslogin" (click)="dropBar()">Direct Supervisor</a>
 			
 			<br>
 			<br>
 		</nav>
 	</div>
 
-	<div class="app-container" [ngClass]="{ 'bg-light': user }">
+	<div class="app-container" >
 		<router-outlet></router-outlet>
 	</div>

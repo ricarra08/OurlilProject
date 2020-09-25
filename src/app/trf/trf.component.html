@@ -7,24 +7,20 @@
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2 well">
             <div class="col-sm-12 form-legend">
-                <h2>Tuition Reimbursement Form</h2>
+                <h2 class="card-header">Tuition Reimbursement Form</h2>
             </div>
 
-              <form (ngSubmit)="onSubmit()" #trmsForm = "ngForm" >
+              <form [formGroup]="form" (ngSubmit)="onSubmit()" >
                     <div class="form-row">
                         <!--Name of the Employee-->
                         <div class="col-md-6 mb-4">
                             <label for="firstname">First Name</label>
-                            <input type="text" class="form-control" id="firstname"
-                            required minlength="4"
-                            [(ngModel)]="model.formFirstName" name="firstname"  placeholder="First Name">       
+                            <input type="text" formControlName="formFirstName" class="form-control" placeholder="First Name">       
                         </div>
 
                         <div class="col-md-6 mb-4">
                             <label for="lastname">Last Name</label>
-                            <input type="text" class="form-control" id="lastname"
-                            required minlength="4"
-                            [(ngModel)]="model.formLastName" name="lastname" placeholder="Last Name">       
+                            <input type="text" formControlName="formLastName" class="form-control" placeholder="Last Name">       
                         </div>
                     </div>   
 
@@ -32,9 +28,7 @@
                         <!--Type Of Event-->
                         <div class="col-md-5 mb-2">
                             <label for="typeEvent">Type of Event</label>
-                            <select class="form-control"  id="typeEvent"
-                                    required
-                                    [(ngModel)]="model.formEventType" name="typeEvent">
+                            <select formControlName="formEventType" class="form-control">
                             <option *ngFor="let event of eventTypes" [value]="event">{{event}}</option>
                             </select>
                         </div>
@@ -43,18 +37,14 @@
                         <div class="col-md-3 mb-4">
                             <label  for="costEvent"> Event Cost</label>
                            
-                            <input type="number" class="form-control" id="costEvent"
-                            required min="0"
-                            [(ngModel)]="model.formEventCost" name="costEvent" placeholder="Amounts">  
+                            <input type="number" formControlName="formEventCost" class="form-control" placeholder="Amounts">  
                 
                         </div>
 
                         <!--Start Date of Event-->
                         <div class="col-md-4 mb-4">
                             <label for="startDate">Start Date of Event</label>
-                            <input type="date" class="form-control" id="startDate"
-                            required
-                            [(ngModel)]="model.formEventStartDate" name="startDate" min="2020-01-01" max="2050-12-31">   
+                            <input type="date" formControlName="formEventStartDate" class="form-control">   
                         </div>
                     </div>
                    
@@ -62,16 +52,12 @@
                     <div class="form-row">
                         <div class="col-md-6 mb-4">
                             <label for="startTime">Start time of Event</label>
-                            <input type="time" class="form-control" id="startTime"
-                            required
-                            [(ngModel)]="model.formEventStartTime" name="startTime">  
+                            <input type="time" formControlName="formEventStartTime" class="form-control">  
                         </div>
 
                         <div class="col-md-6 mb-4">
                             <label for="endTime">End time of Event</label>
-                            <input type="time" class="form-control" id="endTime"
-                            required
-                            [(ngModel)]="model.formEventEndTime" name="endTime">  
+                            <input type="time" formControlName="formEventEndTime" class="form-control">  
                         </div>
                     </div>
 
@@ -81,9 +67,7 @@
                     <div class="form-row">
                         <div class="col-md-12 mb-4">
                             <label for="address">Address</label>
-                            <input type="text" class="form-control" id="address"
-                            required
-                            [(ngModel)]="model.formEventAddress" name="address" placeholder="Address">  
+                            <input type="text" formControlName="formEventAddress" class="form-control">  
                         </div>
                     </div>
 
@@ -91,18 +75,14 @@
                     <div class="form-row">
                         <!--City-->
                         <div class="col-md-5 mb-4">
-                            <label for="address">City</label>
-                            <input type="text" class="form-control" id="city"
-                            required
-                            [(ngModel)]="model.formEventCity" name="city" placeholder="City">  
+                            <label for="City">City</label>
+                            <input type="text" formControlName="formEventCity" class="form-control">  
                         </div>
 
                         <!--State-->
                         <div class="col-md-4 mb-4">
                             <label for="state">State</label>
-                            <select class="form-control"  id="state"
-                                    required
-                                    [(ngModel)]="model.formEventState" name="state" >
+                            <select class="form-control" formControlName="formEventState" class="form-control">
                             <option *ngFor="let state of states" [value]="state"  >{{state}}</option>
                             </select>
                         </div>
@@ -110,9 +90,7 @@
                         <!--Zip-->
                         <div class="col-md-3 mb-4">
                             <label for="zipCode">Zip Code</label>
-                            <input type="number" class="form-control" id="zipCode"
-                            required required min="0" maxlength="11"
-                            [(ngModel)]="model.formEventZip" name="zipCode"  placeholder="Zip Code">   
+                            <input type="number" fromControlName="formEventZip" class="form-control">   
                         </div>
                     </div>
                       
@@ -120,20 +98,11 @@
                     <div class="form-row">
                         <div class="col-md-12 mb-4">
                             <label for="description">Description</label>
-                            <textarea class="form-control" id="description" rows="4"
-                            [(ngModel)]="model.formDescription" name="description" placeholder="Description of Event"></textarea>
+                            <textarea type="text" fromControlName="formEventDescription" class="form-control"></textarea>
                         </div>
                     </div>
-
-                    <!--Import Table-->
-                    <div class="col-md-8 mb-4">
-                        <div class="custom-file">
-                            <label for="discription">Please attach approval email, if you have received one</label>
-                            <input type="file" class="custom-file-input" id="customFile">
-                        </div>
-                    </div>
-                    <div class="col-md-8 mb-4">
-                        <input type="submit" class="btn btn-success" value="Submit">
+                    <div class="form-group">
+                        <button class="btn btn-success">Submit</button>
                     </div>
                 </form>
         </div>

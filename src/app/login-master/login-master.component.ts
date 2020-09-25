@@ -9,9 +9,13 @@ import { AccountService } from '../_services/account.service';
 })
 export class LoginMasterComponent implements OnInit {
   user: User;
-
+  show: boolean = true;
   constructor(private accountService: AccountService) { 
     this.accountService.user.subscribe(x => this.user = x);
+  }
+
+  dropBar(){
+    this.show =false;
   }
 
   ngOnInit(): void {
