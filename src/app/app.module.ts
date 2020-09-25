@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpClientModule } from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { fakeBackendProvider } from './_helpers/fake-backend';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginMasterComponent } from './login-master/login-master.component';
 import { LoginEmpPortalComponent } from './login-emp-portal/login-emp-portal.component';
 import { LoginDsComponent } from './login-ds/login-ds.component';
+import { JwtInterceptor } from './_helpers/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import { LoginDsComponent } from './login-ds/login-ds.component';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    fakeBackendProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

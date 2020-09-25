@@ -8,16 +8,15 @@
             <p> Employee Login Portal </p>
             <form class="form-signin" [formGroup]="form" (ngSubmit)="onSubmit()">
                 <div class="form-group">                
-                    <input id="email"  name="email"  type="text" class="form-control" placeholder="Email@example.com" required="required">
+                    <input formControlName="username"  type="text" class="form-control" placeholder="Email@example.com">
                 </div>
  
-                <div>                
-                    <input id="password" name="password" type="password" class="form-control" placeholder="Password" required="required">
+                <div class ="form-group">                
+                    <input formControlName="password" type="password" class="form-control" placeholder="Password">
                 </div>
  
-                <div>
-                    <p id = "hidden"></p>
-                    <a routerlink="/emphome"> <button routerlink="/emphome" id="loginButton" class="btn-primary" type="submit">Login</button> </a>
+                <div class="form-group">
+                    <button  id="loginButton" class="btn-primary">Login</button>
                 </div>
           </form>
     </div>

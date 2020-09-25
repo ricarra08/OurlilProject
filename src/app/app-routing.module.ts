@@ -5,11 +5,14 @@ import { TrfComponent } from './trf/trf.component';
 import { LoginEmpPortalComponent} from './login-emp-portal/login-emp-portal.component';
 import { LoginDsComponent } from './login-ds/login-ds.component';
 
+const accountModule = () => import('./login-emp-portal/account.module').then(x=> x.AccountModule);
+//users module used for approving/denying 
+
 const routes: Routes = [
-  { path: 'emplogin', component:LoginEmpPortalComponent},  
+  { path: 'emplogin', component: LoginEmpPortalComponent},  
   { path: 'trf', component: TrfComponent},
   { path: 'emphome', component: EMPhomeComponent},
-  { path: 'dslogin', component: LoginDsComponent}
+  { path: 'dslogin', component: LoginDsComponent},
 
 ];
 
