@@ -8,7 +8,6 @@ import { AccountService } from './_services/account.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'project';
   user: User;
 
   constructor(private accountService: AccountService){

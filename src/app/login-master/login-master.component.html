@@ -1,11 +1,17 @@
 
 	<div class="container">
 		<h1>Welcome</h1>
-		<nav class>
+		<nav class ="container">
 			<a routerLink="/emplogin">Employee</a>
 			<br>
 			<br>
 			<a routerLink="/dslogin">Direct Supervisor</a>
-		
-		</nav>	
-	<router-outlet></router-outlet>
+			
+			<br>
+			<br>
+		</nav>
+	</div>
+
+	<div class="app-container" [ngClass]="{ 'bg-light': user }">
+		<router-outlet></router-outlet>
+	</div>
