@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,7 +10,10 @@ import { DshomeComponent } from './dshome/dshome.component';
 import { DhhomeComponent } from './dhhome/dhhome.component';
 import { BchomeComponent } from './bchome/bchome.component';
 import { TrfComponent } from './trf/trf.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginMasterComponent } from './login-master/login-master.component';
+import { LoginEmpPortalComponent } from './login-emp-portal/login-emp-portal.component';
+import { LoginDsComponent } from './login-ds/login-ds.component';
 
 @NgModule({
   declarations: [
@@ -19,12 +23,17 @@ import { FormsModule } from '@angular/forms';
     DshomeComponent,
     DhhomeComponent,
     BchomeComponent,
-    TrfComponent
+    TrfComponent,
+    LoginMasterComponent,
+    LoginEmpPortalComponent,
+    LoginDsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
